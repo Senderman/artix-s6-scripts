@@ -15,11 +15,9 @@ for dir in "$PKG"/*; do
     fi
 done
 
-no_configs_found=false
 for conf in "$PKG"/*.conf; do
-    no_configs_found=true
     install -v -d "${CONFDIR}"
-    install -v -m644 "$conf" "${CONFDIR}/$PKG.conf"
-    break
+    filename=$(basename "$conf")
+    install -v -m644 "$conf" "${CONFDIR}/$filename"
 done
-$no_configs_found && rm -r "${CONFDIR}"
+
